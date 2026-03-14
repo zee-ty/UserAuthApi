@@ -1,13 +1,13 @@
 # User Authentication API (C#)
 
-ASP.NET Core 8 Web API: register, login, logout, and current user profile. Uses PostgreSQL and JWT. Backend only (no frontend in this repo).
+ASP.NET Core 8 Web API: register, login, logout, and current user profile. Uses PostgreSQL and JWT. Backend only.
 
 ## Requirements
 
 - [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0) (for local run)
 - Docker & Docker Compose (easiest way to run everything)
 
-## Quick start (recommended)
+## Quick start
 
 Clone the repo, then:
 
@@ -19,11 +19,11 @@ docker compose up --build
 - API: http://localhost:5050  
 - Swagger: http://localhost:5050/swagger  
 
-Migrations run on startup, so the DB is ready. Default config (see `appsettings.json` and `docker-compose.yml`) works for local use. **For production**, set a strong `Jwt__Secret` (at least 32 characters) via environment.
+Migrations run on startup, so the database is ready. Default config (see `appsettings.json` and `docker-compose.yml`) works for local use. **For production**, set a strong `Jwt__Secret` (at least 32 characters) via environment.
 
 ## Run locally (without Docker)
 
-1. Run PostgreSQL port 5432 with database `userauth`, user `userauth`, password `userauth` (or change `ConnectionStrings:DefaultConnection` in `appsettings.json`).
+1. Run PostgreSQL port 5432 with database `userauth`, user `userauth`, password `userauth`.
 2. From the repo root: `dotnet run`
 3. Open http://localhost:5000 (or the URL in `launchSettings.json`) and http://localhost:5000/swagger.
 
@@ -58,20 +58,20 @@ curl -X GET http://localhost:5050/api/user \
 
 # Adding the API to Postman
 
-1. In Postman, open **Environments** (or **Environments** tab).
+1. In Postman, open **Environments** tab.
 2. Create an environment and name it UserAuthApi Local.
 3. Add a variable:
    - **Variable:** `baseUrl`
    - **Initial / Current value:** `http://localhost:5050`
 4. Save and select this environment in the top-right dropdown.
 
-Then in the collection, set each request URL to `{{baseUrl}}/api`
+Then in the collection, set each request URL to `{{baseUrl}}/api/...`
 
 ## 3. Using protected endpoints such as GET /api/user
 
 **Manual token**
 
-1. Send **POST** `{{baseUrl}}/api/auth/login` (or **register**) with a JSON body, e.g.:
+1. Send **POST** `{{baseUrl}}/api/auth/login` (or **register**) with a JSON body, for example :
    ```json
    {
      "email": "you@example.com",
@@ -88,7 +88,7 @@ Then in the collection, set each request URL to `{{baseUrl}}/api`
 
 1. Right click the collection → **Edit**.
 2. **Authorization** tab → Type: **Bearer Token**.
-3. Token: paste the token (or use a variable, e.g. `{{token}}`).
+3. Token: paste the token (or use a variable, for example `{{token}}`).
 4. Add an environment variable `token` and set it to the token after login; then use `{{token}}` in the collection auth.
 
 After that, all requests in the collection will send the token.
@@ -104,4 +104,4 @@ After that, all requests in the collection will send the token.
 | POST | `/api/auth/logout` | No | — |
 | GET | `/api/user` | **Bearer token** | — |
 
-Once the collection is imported and the base URL (and optional token) are set, you can run all of these from Postman.
+Once the collection is imported and the base URL and optional token are set, you can run all of these from Postman.
