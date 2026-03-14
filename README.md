@@ -97,11 +97,11 @@ After that, all requests in the collection will send the token.
 
 | Method | Path | Auth | Body (JSON) |
 |--------|------|------|-------------|
-| GET | `/api/health` | No | — |
-| GET | `/api/health/version` | No | — |
+| GET | `/api/health` | No |  |
+| GET | `/api/health/version` | No |  |
 | POST | `/api/auth/register` | No | `email`, `password`, `firstName`, `lastName` |
 | POST | `/api/auth/login` | No | `email`, `password` |
-| POST | `/api/auth/logout` | No | — |
-| GET | `/api/user` | **Bearer token** | — |
+| POST | `/api/auth/logout` | No |  |
+| GET | `/api/user` | **Bearer token** | |
 
 Once the collection is imported and the base URL and optional token are set, you can run all of these from Postman.
