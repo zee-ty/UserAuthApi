@@ -1,0 +1,25 @@
+# Build
+bin/
+obj/
+out/
+
+# IDE
+.vs/
+.vscode/
+*.user
+*.suo
+*.userosscache
+
+# User secrets (don't commit real secrets)
+appsettings.*.local.json
+secrets.json
+
+# NuGet
+packages/
+*.nupkg
+project.lock.json
+
+# Misc
+*.log
+*.tmp
+.DS_Store
