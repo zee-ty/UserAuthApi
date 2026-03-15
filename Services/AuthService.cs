@@ -53,8 +53,15 @@ public class AuthService : IAuthService
 
     public LoginResult Login(LoginRequest request)
     {
+        // always check database for user by email first
         var user = _context.Users.FirstOrDefault(u => EF.Functions.ILike(u.Email, request.Email));
-        if (user == null || !BCrypt.Net.BCrypt.Verify(request.Password, user.PasswordHash))
+        if (user == null)
+            return new LoginResult
+            {
+                IsUnauthorized = true,
+                Error = new ErrorResponse { Status = 401, Errors = new[] { _messages.InvalidEmailOrPassword } }
+            };
+        if (!BCrypt.Net.BCrypt.Verify(request.Password, user.PasswordHash))
             return new LoginResult
             {
                 IsUnauthorized = true,
