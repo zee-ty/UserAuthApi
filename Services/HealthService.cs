@@ -23,6 +23,8 @@ public class HealthService : IHealthService
     public VersionResponse GetVersion()
     {
         var env = _configuration["ASPNETCORE_ENVIRONMENT"] ?? "dev";
+        if (string.Equals(env, "Production", StringComparison.OrdinalIgnoreCase))
+            env = "prod";
         return new VersionResponse
         {
             Version = "1.0.0",

@@ -25,7 +25,8 @@ public class AuthService : IAuthService
             return new RegisterResult { IsBadRequest = true, Error = new ErrorResponse { Status = 400, Errors = new[] { _messages.RequestBodyRequired } } };
 
         // check if email already taken
-        if (await _context.Users.AnyAsync(u => EF.Functions.ILike(u.Email, request.Email), cancellationToken))
+        var emailNorm = request.Email.Trim().ToLower();
+        if (await _context.Users.AnyAsync(u => u.Email.ToLower() == emailNorm, cancellationToken))
             return new RegisterResult
             {
                 IsConflict = true,
@@ -54,7 +55,8 @@ public class AuthService : IAuthService
     public LoginResult Login(LoginRequest request)
     {
         // always check database for user by email first
-        var user = _context.Users.FirstOrDefault(u => EF.Functions.ILike(u.Email, request.Email));
+        var emailNorm = request.Email.Trim().ToLower();
+        var user = _context.Users.FirstOrDefault(u => u.Email.ToLower() == emailNorm);
         if (user == null)
             return new LoginResult
             {

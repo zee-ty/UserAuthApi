@@ -10,7 +10,7 @@ out/
 *.suo
 *.userosscache
 
-# User secrets (don't commit real secrets)
+# User secrets 
 appsettings.*.local.json
 secrets.json
 
@@ -18,6 +18,12 @@ secrets.json
 packages/
 *.nupkg
 project.lock.json
+
+# Test results and coverage from Docker 
+TestResults/
+coverage*.xml
+*.coverage
+*.coveragexml
 
 # Misc
 *.log
