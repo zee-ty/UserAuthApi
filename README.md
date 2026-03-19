@@ -20,11 +20,11 @@ docker compose up --build
 
 Migrations run on startup, so the database is ready. Default config (see `appsettings.json` and `docker-compose.yml`) works for local use. 
 
-## Run locally (without Docker)
+## Access the database
 
-1. Run PostgreSQL port 5432 with database `userauth`, user `userauth`, password `userauth`.
-2. From the repo root: `dotnet run`
-3. Open http://localhost:5000 (or the URL in `launchSettings.json`) and http://localhost:5000/swagger.
+1. Connect to your database studio for example dbeaver
+2. Choose postgresql and add the creds, copy these from the dockerfile
+3. Run the database and once you've registered a user, their details will be shown there and the migration version will be shown as well.
 
 ## Running tests
 
