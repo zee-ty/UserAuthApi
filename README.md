@@ -26,6 +26,18 @@ Migrations run on startup, so the database is ready. Default config (see `appset
 2. From the repo root: `dotnet run`
 3. Open http://localhost:5000 (or the URL in `launchSettings.json`) and http://localhost:5000/swagger.
 
+## Running tests
+
+
+**In Docker:**
+
+```bash
+docker compose -f docker-compose.test.yml up --build
+```
+
+- Tests run when the container starts; you’ll see detailed pass/fail output in the terminal.
+- Code coverage is collected and written to `./TestResults/` on your machine (via the mounted volume).
+
 ## Endpoints
 
 | Method | Path | Description |
