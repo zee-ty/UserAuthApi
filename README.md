@@ -4,8 +4,7 @@ ASP.NET Core 8 Web API: register, login, logout, and current user profile. Uses 
 
 ## Requirements
 
-- [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0) (for local run)
-- Docker & Docker Compose (easiest way to run everything)
+- Docker
 
 ## Quick start
 
@@ -19,7 +18,7 @@ docker compose up --build
 - API: http://localhost:5050  
 - Swagger: http://localhost:5050/swagger  
 
-Migrations run on startup, so the database is ready. Default config (see `appsettings.json` and `docker-compose.yml`) works for local use. **For production**, set a strong `Jwt__Secret` (at least 32 characters) via environment.
+Migrations run on startup, so the database is ready. Default config (see `appsettings.json` and `docker-compose.yml`) works for local use. 
 
 ## Run locally (without Docker)
 
